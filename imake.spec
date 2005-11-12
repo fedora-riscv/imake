@@ -1,13 +1,13 @@
 Summary: imake source code configuration and build system
 Name: imake
-Version: 0.99.1
+Version: 0.99.2
 Release: 1
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
 %define xorgurl http://xorg.freedesktop.org/releases/X11R7.0-RC1/everything
 Source0: %{xorgurl}/imake-%{version}.tar.bz2
-Source1: %{xorgurl}/xmkmf-%{version}.tar.bz2
+Source1: %{xorgurl}/xmkmf-0.99.1.tar.bz2
 Source2: %{xorgurl}/xorg-cf-files-%{version}.tar.bz2
 Source3: %{xorgurl}/makedepend-%{version}.tar.bz2
 
@@ -58,7 +58,7 @@ migrate software to the GNU autotools system.
 # Build everything
 {
    for pkg in imake xmkmf xorg-cf-files makedepend ; do
-      pushd $pkg-%{version}
+      pushd $pkg-*
       %configure
       make
       popd
@@ -71,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 # Install everything
 {
    for pkg in imake xmkmf makedepend ; do
-      pushd $pkg-%{version}
+      pushd $pkg-*
       %makeinstall
       popd
    done
@@ -114,5 +114,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1x/makedepend.1x*
 
 %changelog
+* Fri Nov 11 2005 Mike A. Harris <mharris@redhat.com> 0.99.2-1
+- Updated to imake-0.99.2, xorg-cf-files-0.99.2, makedepend-0.99.2 from
+  X11R7 RC2.
+
 * Thu Nov 10 2005 Mike A. Harris <mharris@redhat.com> 0.99.1-1
 - Initial build.
