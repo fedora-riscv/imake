@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 0.99.2
-Release: 2
+Release: 3
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -116,7 +116,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1x/makedepend.1x*
 
 %changelog
-* Wed Nov 16 2005 Than Ngo <than@redhat.com>
+* Wed Nov 16 2005 Than Ngo <than@redhat.com> 0.99.2-3
+- fix typo 
+
+* Wed Nov 16 2005 Than Ngo <than@redhat.com> 0.99.2-2
 - fix xmkmf to look config files in /usr/share/X11/config
   instead /usr/%%{_lib}/X11/config/
 - add host.conf
