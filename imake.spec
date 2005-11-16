@@ -54,7 +54,7 @@ migrate software to the GNU autotools system.
 
 %prep
 %setup -q -c %{name}-%{version} -a1 -a2 -a3
-%patch0 -p0 -b .imake
+%patch0 -p1 -b .imake
 
 %build
 # Build everything
