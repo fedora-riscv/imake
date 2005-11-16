@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 0.99.2
-Release: 1
+Release: 2
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -10,6 +10,7 @@ Source0: %{xorgurl}/imake-%{version}.tar.bz2
 Source1: %{xorgurl}/xmkmf-0.99.1.tar.bz2
 Source2: %{xorgurl}/xorg-cf-files-%{version}.tar.bz2
 Source3: %{xorgurl}/makedepend-%{version}.tar.bz2
+Patch0: imake-0.99.2-misc.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -53,6 +54,7 @@ migrate software to the GNU autotools system.
 
 %prep
 %setup -q -c %{name}-%{version} -a1 -a2 -a3
+%patch0 -p0 -b .imake
 
 %build
 # Build everything
@@ -114,6 +116,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1x/makedepend.1x*
 
 %changelog
+* Wed Nov 16 2005 Than Ngo <than@redhat.com>
+- fix xmkmf to look config files in /usr/share/X11/config
+  instead /usr/%%{_lib}/X11/config/
+- add host.conf
+
 * Fri Nov 11 2005 Mike A. Harris <mharris@redhat.com> 0.99.2-1
 - Updated to imake-0.99.2, xorg-cf-files-0.99.2, makedepend-0.99.2 from
   X11R7 RC2.
