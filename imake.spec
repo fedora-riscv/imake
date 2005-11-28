@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 0.99.2
-Release: 4
+Release: 5
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -11,6 +11,7 @@ Source1: %{xorgurl}/xmkmf-0.99.1.tar.bz2
 Source2: %{xorgurl}/xorg-cf-files-%{version}.tar.bz2
 Source3: %{xorgurl}/makedepend-%{version}.tar.bz2
 Patch0: imake-0.99.2-misc.patch
+Patch1: imake-0.99.2-ProjectRoot.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -55,6 +56,7 @@ migrate software to the GNU autotools system.
 %prep
 %setup -q -c %{name}-%{version} -a1 -a2 -a3
 %patch0 -p1 -b .imake
+%patch1 -p1 -b .ProjectRoot
 
 %build
 # Build everything
@@ -116,6 +118,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1x/makedepend.1x*
 
 %changelog
+* Mon Nov 28 2005 Than Ngo <than@redhat.com> 0.99.2-5
+- add correct ProjectRoot for modular X
+
 * Wed Nov 16 2005 Than Ngo <than@redhat.com> 0.99.2-4 
 - add missing host.conf
 
