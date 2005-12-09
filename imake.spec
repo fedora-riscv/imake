@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 0.99.2
-Release: 5
+Release: 5.1
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -118,6 +118,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1x/makedepend.1x*
 
 %changelog
+* Fri Dec 09 2005 Jesse Keating <jkeating@redhat.com>
+- rebuilt
+
 * Mon Nov 28 2005 Than Ngo <than@redhat.com> 0.99.2-5
 - add correct ProjectRoot for modular X
 
