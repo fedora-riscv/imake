@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.0
-Release: 1
+Release: 2
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -15,6 +15,7 @@ Source3: %{xorgurl}/xorg-cf-files-%{version}.tar.bz2
 Source4: %{xorgurl}/lndir-1.0.0.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
+Patch2: xorg-cf-files-1.0.0-man.patch
 
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
@@ -58,6 +59,7 @@ migrate software to the GNU autotools system.
 %setup -q -c %{name}-%{version} -a1 -a2 -a3 -a4
 #%patch0 -p0 -b .imake
 #%patch1 -p0 -b .ProjectRoot
+%patch2 -p0 -b .redhat
 
 %build
 # Build everything
@@ -137,6 +139,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Mon Dec 19 2005 Than Ngo <than@redhat.com> 1.0.0-2
+- add some macros to fix problem in building of manpages
+
 * Sat Dec 17 2005 Mike A. Harris <mharris@redhat.com> 1.0.0-1
 - Updated all packages to version 1.0.0 from X11R7 RC4
 - Added new lndir, gccmakedep tarballs.
