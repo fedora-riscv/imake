@@ -1,19 +1,23 @@
 Summary: imake source code configuration and build system
 Name: imake
-Version: 0.99.2
-Release: 5.1
+Version: 1.0.0
+Release: 1
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
-%define xorgurl http://xorg.freedesktop.org/releases/X11R7.0-RC1/everything
-Source0: %{xorgurl}/imake-%{version}.tar.bz2
-Source1: %{xorgurl}/xmkmf-0.99.1.tar.bz2
-Source2: %{xorgurl}/xorg-cf-files-%{version}.tar.bz2
-Source3: %{xorgurl}/makedepend-%{version}.tar.bz2
-Patch0: imake-0.99.2-misc.patch
-Patch1: imake-0.99.2-ProjectRoot.patch
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+%define xorgurl http://xorg.freedesktop.org/releases/X11R7.0-RC4/everything
+Source0: %{xorgurl}/imake-%{version}.tar.bz2
+Source1: %{xorgurl}/makedepend-%{version}.tar.bz2
+Source2: %{xorgurl}/gccmakedep-1.0.0.tar.bz2
+Source3: %{xorgurl}/xorg-cf-files-%{version}.tar.bz2
+Source4: %{xorgurl}/lndir-1.0.0.tar.bz2
+Patch0: xorg-cf-files-1.0.0-misc.patch
+Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
+
+BuildRequires: pkgconfig
+BuildRequires: xorg-x11-util-macros
 
 # libxkbfile-devel needed for setxkbmap, xkbcomp, xkbevd, xkbprint
 #BuildRequires: libxkbfile-devel
@@ -36,13 +40,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 # libXpm-devel needed for xkbutils (from above error)
 #BuildRequires: libXpm-devel
 
-#Provides: %{pkgname}
-#Provides: setxkbmap, xkbcomp, xkbevd, xkbprint, xkbutils
-# NOTE: The XFree86, and xorg-x11 packages used to contain the xkb utilities
-# in the previous monolithic based releases.  This Conflicts line ensures
-# that upgrades are handled properly.
-#Conflicts: XFree86, xorg-x11
-Provides: imake, xmkmf, makedepend
+# FIXME:
+# Obsoletes: <each package the following commands used to be present in>
+Provides: ccmakedep cleanlinks gccmakedep imake lndir makedepend makeg
+Provides: mergelib mkdirhier mkhtmlindex revpath xmkmf
 
 %description
 Imake is a deprecated source code configuration and build system which
@@ -54,16 +55,23 @@ used by new software projects.  Software developers are encouraged to
 migrate software to the GNU autotools system.
 
 %prep
-%setup -q -c %{name}-%{version} -a1 -a2 -a3
-%patch0 -p1 -b .imake
-%patch1 -p1 -b .ProjectRoot
+%setup -q -c %{name}-%{version} -a1 -a2 -a3 -a4
+#%patch0 -p0 -b .imake
+#%patch1 -p0 -b .ProjectRoot
 
 %build
 # Build everything
 {
-   for pkg in imake xmkmf xorg-cf-files makedepend ; do
+   for pkg in imake makedepend gccmakedep lndir xorg-cf-files ; do
       pushd $pkg-*
-      %configure
+      case $pkg in
+         imake|xorg-cf-files)
+            %configure --with-config-dir=%{_datadir}/X11/config
+            ;;
+         *)
+            %configure
+            ;;
+      esac
       make
       popd
    done
@@ -74,25 +82,18 @@ rm -rf $RPM_BUILD_ROOT
 
 # Install everything
 {
-   for pkg in imake xmkmf makedepend ; do
+   for pkg in imake makedepend gccmakedep lndir xorg-cf-files ; do
       pushd $pkg-*
-      %makeinstall
+      case $pkg in
+#         xorg-cf-files)
+#            make install DESTDIR=$RPM_BUILD_ROOT libdir=%{_datadir}
+#            ;;
+         *)
+            make install DESTDIR=$RPM_BUILD_ROOT
+            ;;
+      esac
       popd
    done
-   pushd xorg-cf-files-%{version}
-   make install DESTDIR=$RPM_BUILD_ROOT libdir=%{_datadir}
-   popd
-
-}
-# FIXME: Move/rename manpages to correct location
-{
-    ls -al $RPM_BUILD_ROOT%{_mandir}/man1
-    mv $RPM_BUILD_ROOT%{_mandir}/man1 $RPM_BUILD_ROOT%{_mandir}/man1x
-#    ls -al $RPM_BUILD_ROOT%{_mandir}/man1
-    ls -al $RPM_BUILD_ROOT%{_mandir}/man1x
-    for each in $RPM_BUILD_ROOT%{_mandir}/man1x/* ; do
-        mv $each ${each}x
-    done
 }
 
 %clean
@@ -102,8 +103,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc
 %dir %{_bindir}
+%{_bindir}/ccmakedep
+%{_bindir}/cleanlinks
+%{_bindir}/gccmakedep
 %{_bindir}/imake
+%{_bindir}/lndir
 %{_bindir}/makedepend
+%{_bindir}/makeg
+%{_bindir}/mergelib
+%{_bindir}/mkdirhier
+%{_bindir}/mkhtmlindex
+%{_bindir}/revpath
 %{_bindir}/xmkmf
 %dir %{_datadir}/X11
 %dir %{_datadir}/X11/config
@@ -112,13 +122,33 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/config/*.rules
 %{_datadir}/X11/config/*.tmpl
 %dir %{_mandir}
-%dir %{_mandir}/man1x
-%{_mandir}/man1x/imake.1x*
-%{_mandir}/man1x/xmkmf.1x*
-%{_mandir}/man1x/makedepend.1x*
+%dir %{_mandir}/man1
+%{_mandir}/man1/ccmakedep.1x*
+%{_mandir}/man1/cleanlinks.1x*
+%{_mandir}/man1/gccmakedep.1x*
+%{_mandir}/man1/imake.1x*
+%{_mandir}/man1/lndir.1x*
+%{_mandir}/man1/makedepend.1x*
+%{_mandir}/man1/makeg.1x*
+%{_mandir}/man1/mergelib.1x*
+%{_mandir}/man1/mkdirhier.1x*
+%{_mandir}/man1/mkhtmlindex.1x*
+%{_mandir}/man1/revpath.1x*
+%{_mandir}/man1/xmkmf.1x*
 
 %changelog
-* Fri Dec 09 2005 Jesse Keating <jkeating@redhat.com>
+* Sat Dec 17 2005 Mike A. Harris <mharris@redhat.com> 1.0.0-1
+- Updated all packages to version 1.0.0 from X11R7 RC4
+- Added new lndir, gccmakedep tarballs.
+- Changed manpage dirs from man1x to man1 to match upstream RC4 default.
+- Removed all previous 'misc' patch, as we now pass --with-config-dir to
+  configure to specify the location of the Imake config files.
+- Renamed imake patch to xorg-cf-files-1.0.0-ProjectRoot.patch as it did not
+  patch imake at all.  This should probably be changed to be a custom Red Hat
+  host.def file that is added as a source line instead of randomly patching
+  various files.
+
+* Fri Dec 09 2005 Jesse Keating <jkeating@redhat.com> 0.99.2-5.1
 - rebuilt
 
 * Mon Nov 28 2005 Than Ngo <than@redhat.com> 0.99.2-5

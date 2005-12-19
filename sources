@@ -1,4 +1,5 @@
-a73c996b16a35aa04ad285e652d60f2a  xmkmf-0.99.1.tar.bz2
-2efcc85a63705176a53146c5d3f274d3  imake-0.99.2.tar.bz2
-2fbed35fb9e95b84f13534c6e2993c21  makedepend-0.99.2.tar.bz2
-7f9081ed93a97ada99fe9bda967b1c8c  xorg-cf-files-0.99.2.tar.bz2
+caf5192a74a0f34445cce44bf45580e9  gccmakedep-1.0.0.tar.bz2
+afa442819cd0cb51bbfb3f3d63c7ad68  imake-1.0.0.tar.bz2
+a6e3f4d402654fbb8f965456cf94e7ab  lndir-1.0.0.tar.bz2
+cae97a7abf38ff032ab819253bdd61d5  makedepend-1.0.0.tar.bz2
+f2083ccfd4cb9876c8bb7f16a3017f0a  xorg-cf-files-1.0.0.tar.bz2
