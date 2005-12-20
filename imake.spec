@@ -141,6 +141,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Tue Dec 20 2005 Than Ngo <than@redhat.com> 1.0.0-3
 - add correct XAppLoadDir #173593
+- add more macros for fedora
 
 * Mon Dec 19 2005 Than Ngo <than@redhat.com> 1.0.0-2
 - add some macros to fix problem in building of manpages
