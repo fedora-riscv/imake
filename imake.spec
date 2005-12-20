@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.0
-Release: 2
+Release: 3
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -15,7 +15,7 @@ Source3: %{xorgurl}/xorg-cf-files-%{version}.tar.bz2
 Source4: %{xorgurl}/lndir-1.0.0.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
-Patch2: xorg-cf-files-1.0.0-man.patch
+Patch2: xorg-cf-files-1.0.0-redhat.patch
 
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
@@ -139,6 +139,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Tue Dec 20 2005 Than Ngo <than@redhat.com> 1.0.0-3
+- add correct XAppLoadDir #173593
+
 * Mon Dec 19 2005 Than Ngo <than@redhat.com> 1.0.0-2
 - add some macros to fix problem in building of manpages
 
