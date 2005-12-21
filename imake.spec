@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.0
-Release: 3
+Release: 4
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -139,6 +139,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Wed Dec 21 2005 Than Ngo <than@redhat.com> 1.0.0-4
+- final fix for #173593
+
 * Tue Dec 20 2005 Than Ngo <than@redhat.com> 1.0.0-3
 - add correct XAppLoadDir #173593
 - add more macros for fedora
