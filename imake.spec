@@ -151,7 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 
 * Sat Dec 17 2005 Mike A. Harris <mharris@redhat.com> 1.0.0-1
 - Updated all packages to version 1.0.0 from X11R7 RC4
-- Added new lndir, gccmakedep tarballs.
+- Added new lndir, gccmakedep tarballs.  (#173478)
 - Changed manpage dirs from man1x to man1 to match upstream RC4 default.
 - Removed all previous 'misc' patch, as we now pass --with-config-dir to
   configure to specify the location of the Imake config files.
