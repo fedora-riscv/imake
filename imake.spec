@@ -1,21 +1,21 @@
 Summary: imake source code configuration and build system
 Name: imake
-Version: 1.0.0
-Release: 4
+Version: 1.0.1
+Release: 1
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%define xorgurl http://xorg.freedesktop.org/releases/X11R7.0-RC4/everything
+%define xorgurl http://xorg.freedesktop.org/releases/X11R7.0/src/everything
 Source0: %{xorgurl}/imake-%{version}.tar.bz2
-Source1: %{xorgurl}/makedepend-%{version}.tar.bz2
-Source2: %{xorgurl}/gccmakedep-1.0.0.tar.bz2
+Source1: %{xorgurl}/makedepend-1.0.0.tar.bz2
+Source2: %{xorgurl}/gccmakedep-%{version}.tar.bz2
 Source3: %{xorgurl}/xorg-cf-files-%{version}.tar.bz2
-Source4: %{xorgurl}/lndir-1.0.0.tar.bz2
+Source4: %{xorgurl}/lndir-%{version}.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
-Patch2: xorg-cf-files-1.0.0-redhat.patch
+Patch2: xorg-cf-files-1.0.1-redhat.patch
 
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
@@ -139,6 +139,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Wed Jan 18 2006 Mike A. Harris <mharris@redhat.com> 1.0.1-1
+- Updated all packages to version 1.0.1 from X11R7.0
+
 * Wed Dec 21 2005 Than Ngo <than@redhat.com> 1.0.0-4
 - final fix for #173593
 
