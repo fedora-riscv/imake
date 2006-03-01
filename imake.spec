@@ -104,7 +104,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc
-%dir %{_bindir}
 %{_bindir}/ccmakedep
 %{_bindir}/cleanlinks
 %{_bindir}/gccmakedep
@@ -123,8 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/config/*.def
 %{_datadir}/X11/config/*.rules
 %{_datadir}/X11/config/*.tmpl
-%dir %{_mandir}
-%dir %{_mandir}/man1
+#%dir %{_mandir}/man1x
 %{_mandir}/man1/ccmakedep.1x*
 %{_mandir}/man1/cleanlinks.1x*
 %{_mandir}/man1/gccmakedep.1x*
@@ -139,10 +137,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
-* Fri Feb 10 2006 Jesse Keating <jkeating@redhat.com> - 1.0.1-1.2
+* Fri Feb 10 2006 Jesse Keating <jkeating@redhat.com> 1.0.1-1.2
 - bump again for double-long bug on ppc(64)
 
-* Tue Feb 07 2006 Jesse Keating <jkeating@redhat.com> - 1.0.1-1.1
+* Tue Feb 07 2006 Jesse Keating <jkeating@redhat.com> 1.0.1-1.1
 - rebuilt for new gcc4.1 snapshot and glibc changes
 
 * Wed Jan 18 2006 Mike A. Harris <mharris@redhat.com> 1.0.1-1
