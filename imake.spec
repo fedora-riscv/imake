@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.1
-Release: 1.2
+Release: 2
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -18,7 +18,7 @@ Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.1-redhat.patch
 
 BuildRequires: pkgconfig
-BuildRequires: xorg-x11-util-macros
+BuildRequires: xorg-x11-util-macros xorg-x11-proto-devel
 
 # libxkbfile-devel needed for setxkbmap, xkbcomp, xkbevd, xkbprint
 #BuildRequires: libxkbfile-devel
@@ -137,6 +137,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Wed Mar 01 2006 Karsten Hopp <karsten@redhat.de> 1.0.1-2
+- Buildrequires: xorg-x11-proto-devel
+
 * Fri Feb 10 2006 Jesse Keating <jkeating@redhat.com> 1.0.1-1.2
 - bump again for double-long bug on ppc(64)
 
