@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.1
-Release: 2
+Release: 3
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -18,31 +18,9 @@ Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.1-redhat.patch
 
 BuildRequires: pkgconfig
-BuildRequires: xorg-x11-util-macros xorg-x11-proto-devel
+BuildRequires: xorg-x11-util-macros
+BuildRequires: xorg-x11-proto-devel
 
-# libxkbfile-devel needed for setxkbmap, xkbcomp, xkbevd, xkbprint
-#BuildRequires: libxkbfile-devel
-# libX11-devel needed for setxkbmap, xkbcomp, xkbevd, xkbprint
-#BuildRequires: libX11-devel
-# libXaw-devel needed for xkbutils
-#BuildRequires: libXaw-devel
-# libXt-devel needed for xkbutils
-#BuildRequires: libXt-devel
-# FIXME: xkbvleds requires libXext, but autotools doesn't check/require it:
-# gcc  -O2 -g -march=i386 -mcpu=i686   -o xkbvleds  xkbvleds-xkbvleds.o
-# xkbvleds-LED.o xkbvleds-utils.o -lXaw7 -lXmu -lXt -lSM -lICE -lXext -lXpm -lX11 -ldl
-# /usr/bin/ld: cannot find -lXext
-# libXext-devel needed for xkbutils (from above error)
-#BuildRequires: libXext-devel
-# FIXME: xkbvleds requires libXext, but autotools doesn't check/require it:
-# gcc  -O2 -g -march=i386 -mcpu=i686   -o xkbvleds  xkbvleds-xkbvleds.o
-# xkbvleds-LED.o xkbvleds-utils.o -lXaw7 -lXmu -lXt -lSM -lICE -lXext -lXpm -lX11 -ldl
-# /usr/bin/ld: cannot find -lXpm
-# libXpm-devel needed for xkbutils (from above error)
-#BuildRequires: libXpm-devel
-
-# FIXME:
-# Obsoletes: <each package the following commands used to be present in>
 Provides: ccmakedep cleanlinks gccmakedep imake lndir makedepend makeg
 Provides: mergelib mkdirhier mkhtmlindex revpath xmkmf
 
@@ -137,6 +115,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Mon Mar 06 2006 Mike A. Harris <mharris@redhat.com> 1.0.1-3
+- Updated xorg-cf-files-1.0.1-redhat.patch with fix for (#178177)
+
 * Wed Mar 01 2006 Karsten Hopp <karsten@redhat.de> 1.0.1-2
 - Buildrequires: xorg-x11-proto-devel
 
