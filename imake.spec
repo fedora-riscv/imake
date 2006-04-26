@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.1
-Release: 3
+Release: 4
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -16,6 +16,7 @@ Source4: %{xorgurl}/lndir-%{version}.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.1-redhat.patch
+Patch3: xorg-cf-files-1.0.1-xprint.patch
 
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
@@ -38,6 +39,7 @@ migrate software to the GNU autotools system.
 #%patch0 -p0 -b .imake
 #%patch1 -p0 -b .ProjectRoot
 %patch2 -p0 -b .redhat
+%patch3 -p0 -b .xprint
 
 %build
 # Build everything
@@ -115,6 +117,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Tue Apr 25 2006 Adam Jackson <ajackson@redhat.com> 1.0.1-4
+- Fix ExtraXawReqs to reflect reality (libXp is unneeded)
+
 * Mon Mar 06 2006 Mike A. Harris <mharris@redhat.com> 1.0.1-3
 - Updated xorg-cf-files-1.0.1-redhat.patch with fix for (#178177)
 
