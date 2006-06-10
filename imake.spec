@@ -7,12 +7,11 @@ Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%define xorgurl http://xorg.freedesktop.org/releases/X11R7.0/src/everything
-Source0: %{xorgurl}/imake-%{version}.tar.bz2
-Source1: %{xorgurl}/makedepend-1.0.0.tar.bz2
-Source2: %{xorgurl}/gccmakedep-%{version}.tar.bz2
-Source3: %{xorgurl}/xorg-cf-files-%{version}.tar.bz2
-Source4: %{xorgurl}/lndir-%{version}.tar.bz2
+Source0: http://xorg.freedesktop.org/releases/individual/util/imake-%{version}.tar.bz2
+Source1: http://xorg.freedesktop.org/releases/individual/util/makedepend-1.0.0.tar.bz2
+Source2: http://xorg.freedesktop.org/releases/individual/util/gccmakedep-%{version}.tar.bz2
+Source3: http://xorg.freedesktop.org/releases/individual/util/xorg-cf-files-%{version}.tar.bz2
+Source4: http://xorg.freedesktop.org/releases/individual/util/lndir-%{version}.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.1-redhat.patch
