@@ -7,11 +7,11 @@ Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0: ftp://ftp.x.org/pub/individual/individual/util/imake-1.0.2.tar.bz2
-Source1: ftp://ftp.x.org/pub/individual/individual/util/makedepend-1.0.0.tar.bz2
-Source2: ftp://ftp.x.org/pub/individual/individual/util/gccmakedep-1.0.2.tar.bz2
-Source3: ftp://ftp.x.org/pub/individual/individual/util/xorg-cf-files-1.0.2.tar.bz2
-Source4: ftp://ftp.x.org/pub/individual/individual/util/lndir-1.0.1.tar.bz2
+Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.2.tar.bz2
+Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.0.tar.bz2
+Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.2.tar.bz2
+Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.2.tar.bz2
+Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.1.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.1-redhat.patch
