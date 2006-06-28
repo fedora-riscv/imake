@@ -1,17 +1,17 @@
 Summary: imake source code configuration and build system
 Name: imake
-Version: 1.0.1
-Release: 4
+Version: 1.0.2
+Release: 1
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0: http://xorg.freedesktop.org/releases/individual/util/imake-%{version}.tar.bz2
-Source1: http://xorg.freedesktop.org/releases/individual/util/makedepend-1.0.0.tar.bz2
-Source2: http://xorg.freedesktop.org/releases/individual/util/gccmakedep-%{version}.tar.bz2
-Source3: http://xorg.freedesktop.org/releases/individual/util/xorg-cf-files-%{version}.tar.bz2
-Source4: http://xorg.freedesktop.org/releases/individual/util/lndir-%{version}.tar.bz2
+Source0: ftp://ftp.x.org/pub/individual/individual/util/imake-1.0.2.tar.bz2
+Source1: ftp://ftp.x.org/pub/individual/individual/util/makedepend-1.0.0.tar.bz2
+Source2: ftp://ftp.x.org/pub/individual/individual/util/gccmakedep-1.0.2.tar.bz2
+Source3: ftp://ftp.x.org/pub/individual/individual/util/xorg-cf-files-1.0.2.tar.bz2
+Source4: ftp://ftp.x.org/pub/individual/individual/util/lndir-1.0.1.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.1-redhat.patch
@@ -116,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Wed Jun 21 2006 Mike A. Harris <mharris@redhat.com> 1.0.2-1
+- Update to imake-1.0.2, gccmakedep-1.0.2, xorg-cf-files-1.0.2
+
 * Tue Apr 25 2006 Adam Jackson <ajackson@redhat.com> 1.0.1-4
 - Fix ExtraXawReqs to reflect reality (libXp is unneeded)
 
