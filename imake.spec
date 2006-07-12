@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 1
+Release: 1.1
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -116,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Wed Jul 12 2006 Jesse Keating <jkeating@redhat.com> - sh: line 0: fg: no job control
+- rebuild
+
 * Wed Jun 21 2006 Mike A. Harris <mharris@redhat.com> 1.0.2-1
 - Update to imake-1.0.2, gccmakedep-1.0.2, xorg-cf-files-1.0.2
 
