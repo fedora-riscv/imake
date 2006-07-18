@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 2
+Release: 3
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -14,8 +14,8 @@ Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.2.tar.bz2
 Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.1.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
-Patch2: xorg-cf-files-1.0.1-redhat.patch
-Patch3: xorg-cf-files-1.0.1-xprint.patch
+Patch2: xorg-cf-files-1.0.2-redhat.patch
+Patch3: xorg-cf-files-1.0.2-xprint.patch
 
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
@@ -116,6 +116,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Tue Jul 18 2006 Than Ngo <than@redhat.com> 1.0.2-3
+- cleanup patch files
+- update source files
+
 * Fri Jul 14 2006 Jesse Keating <jkeating@redhat.com> - 1.0.2-2
 - rebuild
 
