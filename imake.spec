@@ -1,14 +1,14 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 3
+Release: 4%{?dist}
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.2.tar.bz2
-Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.0.tar.bz2
+Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.1.tar.bz2
 Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.2.tar.bz2
 Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.2.tar.bz2
 Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.1.tar.bz2
@@ -107,7 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/gccmakedep.1x*
 %{_mandir}/man1/imake.1x*
 %{_mandir}/man1/lndir.1x*
-%{_mandir}/man1/makedepend.1x*
+%{_mandir}/man1/makedepend.1*
 %{_mandir}/man1/makeg.1x*
 %{_mandir}/man1/mergelib.1x*
 %{_mandir}/man1/mkdirhier.1x*
@@ -116,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Mon Mar 26 2007 Adam Jackson <ajax@redhat.com> 1.0.2-4
+- makedepend 1.0.1
+
 * Tue Jul 18 2006 Than Ngo <than@redhat.com> 1.0.2-3
 - cleanup patch files
 - update source files
