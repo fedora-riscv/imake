@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -116,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Tue Aug 21 2007 Adam Jackson <ajax@redhat.com> - 1.0.2-5
+- Rebuild for build id
+
 * Mon Mar 26 2007 Adam Jackson <ajax@redhat.com> 1.0.2-4
 - makedepend 1.0.1
 
