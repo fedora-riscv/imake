@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
@@ -116,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 1.0.2-6
+- Autorebuild for GCC 4.3
+
 * Tue Aug 21 2007 Adam Jackson <ajax@redhat.com> - 1.0.2-5
 - Rebuild for build id
 
