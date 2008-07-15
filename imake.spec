@@ -1,8 +1,8 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 6%{?dist}
-License: MIT/X11
+Release: 7%{?dist}
+License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -116,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Tue Jul 15 2008 Adam Jackson <ajax@redhat.com> 1.0.2-7
+- Fix license tag.
+
 * Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 1.0.2-6
 - Autorebuild for GCC 4.3
 
