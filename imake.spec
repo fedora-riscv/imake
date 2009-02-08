@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -16,6 +16,7 @@ Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.2-redhat.patch
 Patch3: xorg-cf-files-1.0.2-xprint.patch
+Patch10: imake-1.0.2-find-pedantry.patch
 
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
@@ -39,6 +40,8 @@ migrate software to the GNU autotools system.
 #%patch1 -p0 -b .ProjectRoot
 %patch2 -p0 -b .redhat
 %patch3 -p0 -b .xprint
+
+%patch10 -p0 -b .find
 
 %build
 # Build everything
@@ -116,6 +119,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Sun Feb 08 2009 Adam Jackson <ajax@redhat.com> 1.0.2-8
+- imake-1.0.2-find-pedantry.patch: Silence useless pedantry warning from
+  find(1) when running cleanlinks. (#483126)
+
 * Tue Jul 15 2008 Adam Jackson <ajax@redhat.com> 1.0.2-7
 - Fix license tag.
 
