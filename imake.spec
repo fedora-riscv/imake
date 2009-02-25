@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 8%{?dist}
+Release: 9%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -119,6 +119,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Tue Feb 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.2-9
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Sun Feb 08 2009 Adam Jackson <ajax@redhat.com> 1.0.2-8
 - imake-1.0.2-find-pedantry.patch: Silence useless pedantry warning from
   find(1) when running cleanlinks. (#483126)
