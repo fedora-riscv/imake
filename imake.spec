@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 9%{?dist}
+Release: 10%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -119,6 +119,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.2-10
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
+
 * Tue Feb 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.2-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 
