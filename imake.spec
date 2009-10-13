@@ -1,14 +1,14 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.2.tar.bz2
-Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.1.tar.bz2
+Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.2.tar.bz2
 Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.2.tar.bz2
 Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.2.tar.bz2
 Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.1.tar.bz2
@@ -119,6 +119,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Tue Oct 13 2009 Adam Jackson <ajax@redhat.com> 1.0.2-11
+- makedepend 1.0.2
+
 * Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.2-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
