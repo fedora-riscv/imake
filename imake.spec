@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 11%{?dist}
+Release: 12%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -16,6 +16,8 @@ Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.2-redhat.patch
 Patch3: xorg-cf-files-1.0.2-xprint.patch
+# fix RH BZ #538249
+Patch4: lndir-1.0.1-git-1.patch
 Patch10: imake-1.0.2-find-pedantry.patch
 
 BuildRequires: pkgconfig
@@ -40,6 +42,7 @@ migrate software to the GNU autotools system.
 #%patch1 -p0 -b .ProjectRoot
 %patch2 -p0 -b .redhat
 %patch3 -p0 -b .xprint
+%patch4 -p0 -b .lndir
 
 %patch10 -p0 -b .find
 
@@ -119,6 +122,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Mon Feb 22 2010 Matěj Cepl <mcepl@redhat.com> - 1.0.2-12
+-  lndir should ignore .git directory (RH BZ #538249)
+
 * Tue Oct 13 2009 Adam Jackson <ajax@redhat.com> 1.0.2-11
 - makedepend 1.0.2
 
