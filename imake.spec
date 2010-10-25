@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 14%{?dist}
+Release: 15%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -19,6 +19,7 @@ Patch3: xorg-cf-files-1.0.2-xprint.patch
 # fix RH BZ #538249
 Patch4: lndir-1.0.1-git-1.patch
 Patch10: imake-1.0.2-find-pedantry.patch
+Patch11: imake-1.0.2-abort.patch
 
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
@@ -45,6 +46,7 @@ migrate software to the GNU autotools system.
 %patch4 -p0 -b .lndir
 
 %patch10 -p0 -b .find
+%patch11 -p0 -b .abort
 
 %build
 # Build everything
@@ -121,6 +123,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Mon Oct 25 2010 Adam Jackson <ajax@redhat.com> 1.0.2-15
+- imake-1.0.2-abort.patch: Paper over an abort (#646561)
+
 * Mon Oct 25 2010 Adam Jackson <ajax@redhat.com> 1.0.2-14
 - Don't own things owned by filesystem (#569411)
 
