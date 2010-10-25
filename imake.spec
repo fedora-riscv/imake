@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.2
-Release: 13%{?dist}
+Release: 14%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -101,7 +101,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/mkhtmlindex
 %{_bindir}/revpath
 %{_bindir}/xmkmf
-%dir %{_datadir}/X11
 %dir %{_datadir}/X11/config
 %{_datadir}/X11/config/*.cf
 %{_datadir}/X11/config/*.def
@@ -122,6 +121,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1x*
 
 %changelog
+* Mon Oct 25 2010 Adam Jackson <ajax@redhat.com> 1.0.2-14
+- Don't own things owned by filesystem (#569411)
+
 * Mon Feb 22 2010 Matěj Cepl <mcepl@redhat.com> - 1.0.2-13
 -  lndir should ignore .git directory (RH BZ #538249)
 
