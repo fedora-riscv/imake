@@ -1,23 +1,21 @@
 Summary: imake source code configuration and build system
 Name: imake
-Version: 1.0.2
-Release: 15%{?dist}
+Version: 1.0.4
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.2.tar.bz2
-Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.2.tar.bz2
+Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.4.tar.bz2
+Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.3.tar.bz2
 Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.2.tar.bz2
 Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.3.tar.bz2
-Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.1.tar.bz2
+Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.2.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.2-redhat.patch
 Patch3: xorg-cf-files-1.0.2-xprint.patch
-# fix RH BZ #538249
-Patch4: lndir-1.0.1-git-1.patch
 Patch10: imake-1.0.2-find-pedantry.patch
 Patch11: imake-1.0.2-abort.patch
 
@@ -43,10 +41,12 @@ migrate software to the GNU autotools system.
 #%patch1 -p0 -b .ProjectRoot
 %patch2 -p0 -b .redhat
 %patch3 -p0 -b .xprint
-%patch4 -p0 -b .lndir
 
-%patch10 -p0 -b .find
-%patch11 -p0 -b .abort
+# imake patches
+pushd %{name}-%{version}
+%patch10 -p1 -b .find
+%patch11 -p1 -b .abort
+popd
 
 %build
 # Build everything
@@ -109,20 +109,25 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/config/*.rules
 %{_datadir}/X11/config/*.tmpl
 #%dir %{_mandir}/man1x
-%{_mandir}/man1/ccmakedep.1x*
-%{_mandir}/man1/cleanlinks.1x*
-%{_mandir}/man1/gccmakedep.1x*
-%{_mandir}/man1/imake.1x*
-%{_mandir}/man1/lndir.1x*
+%{_mandir}/man1/ccmakedep.1*
+%{_mandir}/man1/cleanlinks.1*
+%{_mandir}/man1/gccmakedep.1*
+%{_mandir}/man1/imake.1*
+%{_mandir}/man1/lndir.1*
 %{_mandir}/man1/makedepend.1*
-%{_mandir}/man1/makeg.1x*
-%{_mandir}/man1/mergelib.1x*
-%{_mandir}/man1/mkdirhier.1x*
-%{_mandir}/man1/mkhtmlindex.1x*
-%{_mandir}/man1/revpath.1x*
-%{_mandir}/man1/xmkmf.1x*
+%{_mandir}/man1/makeg.1*
+%{_mandir}/man1/mergelib.1*
+%{_mandir}/man1/mkdirhier.1*
+%{_mandir}/man1/mkhtmlindex.1*
+%{_mandir}/man1/revpath.1*
+%{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Mon Nov 01 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.0.4-1
+- imake 1.0.4
+- makedepend 1.0.3
+- lndir 1.0.2
+
 * Mon Oct 25 2010 Adam Jackson <ajax@redhat.com> 1.0.2-15
 - imake-1.0.2-abort.patch: Paper over an abort (#646561)
 
