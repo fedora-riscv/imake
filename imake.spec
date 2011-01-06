@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -10,12 +10,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.4.tar.bz2
 Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.3.tar.bz2
 Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.2.tar.bz2
-Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.3.tar.bz2
+Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.4.tar.bz2
 Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.2.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.2-redhat.patch
-Patch3: xorg-cf-files-1.0.2-xprint.patch
 Patch10: imake-1.0.2-find-pedantry.patch
 Patch11: imake-1.0.2-abort.patch
 
@@ -40,7 +39,6 @@ migrate software to the GNU autotools system.
 #%patch0 -p0 -b .imake
 #%patch1 -p0 -b .ProjectRoot
 %patch2 -p0 -b .redhat
-%patch3 -p0 -b .xprint
 
 # imake patches
 pushd %{name}-%{version}
@@ -123,6 +121,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Thu Jan 06 2011 Adam Jackson <ajax@redhat.com> 1.0.4-2
+- xorg-cf-files 1.0.4
+- xorg-cf-files-1.0.2-xprint.patch: Drop, merged.
+
 * Mon Nov 01 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.0.4-1
 - imake 1.0.4
 - makedepend 1.0.3
