@@ -1,21 +1,19 @@
 Summary: imake source code configuration and build system
 Name: imake
-Version: 1.0.4
+Version: 1.0.5
 Release: 4%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.4.tar.bz2
-Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.3.tar.bz2
+Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.5.tar.bz2
+Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.4.tar.bz2
 Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.2.tar.bz2
 Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.4.tar.bz2
-Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.2.tar.bz2
+Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.3.tar.bz2
 Patch0: xorg-cf-files-1.0.0-misc.patch
 Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.2-redhat.patch
-Patch10: imake-1.0.2-find-pedantry.patch
 Patch11: imake-1.0.2-abort.patch
 
 BuildRequires: pkgconfig
@@ -42,7 +40,6 @@ migrate software to the GNU autotools system.
 
 # imake patches
 pushd %{name}-%{version}
-%patch10 -p1 -b .find
 %patch11 -p1 -b .abort
 popd
 
@@ -121,6 +118,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Thu Mar 08 2012 Adam Jackson <ajax@redhat.com> 1.0.5-4
+- imake 1.0.5
+- lndir 1.0.3
+- makedepend 1.0.4
+
 * Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.4-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
