@@ -11,8 +11,6 @@ Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.4.tar.bz2
 Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.2.tar.bz2
 Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.4.tar.bz2
 Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.3.tar.bz2
-Patch0: xorg-cf-files-1.0.0-misc.patch
-Patch1: xorg-cf-files-1.0.0-ProjectRoot.patch
 Patch2: xorg-cf-files-1.0.2-redhat.patch
 Patch11: imake-1.0.2-abort.patch
 
@@ -34,8 +32,6 @@ migrate software to the GNU autotools system.
 
 %prep
 %setup -q -c %{name}-%{version} -a1 -a2 -a3 -a4
-#%patch0 -p0 -b .imake
-#%patch1 -p0 -b .ProjectRoot
 %patch2 -p0 -b .redhat
 
 # imake patches
