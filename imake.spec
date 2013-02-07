@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.5
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -18,7 +18,7 @@ BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
 BuildRequires: xorg-x11-proto-devel
 
-Provides: ccmakedep cleanlinks gccmakedep imake lndir makedepend makeg
+Provides: ccmakedep cleanlinks gccmakedep lndir makedepend makeg
 Provides: mergelib mkdirhier mkhtmlindex revpath xmkmf
 
 %description
@@ -66,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
       pushd $pkg-*
       case $pkg in
 #         xorg-cf-files)
-#            make install DESTDIR=$RPM_BUILD_ROOT libdir=%{_datadir}
+#            make install DESTDIR=$RPM_BUILD_ROOT libdir=%%{_datadir}
 #            ;;
          *)
             make install DESTDIR=$RPM_BUILD_ROOT
@@ -99,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/config/*.def
 %{_datadir}/X11/config/*.rules
 %{_datadir}/X11/config/*.tmpl
-#%dir %{_mandir}/man1x
+#%%dir %%{_mandir}/man1x
 %{_mandir}/man1/ccmakedep.1*
 %{_mandir}/man1/cleanlinks.1*
 %{_mandir}/man1/gccmakedep.1*
@@ -114,6 +114,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Thu Feb 07 2013 Jon Ciesla <limburgher@gmail.com> 1.0.5-7
+- Merge review fixes, BZ 225898.
+
 * Thu Jan 03 2013 Adam Jackson <ajax@redhat.com> 1.0.5-6
 - Drop unused patches
 
