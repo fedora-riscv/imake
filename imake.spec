@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.5
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -114,6 +114,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.5-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Thu Feb 07 2013 Jon Ciesla <limburgher@gmail.com> 1.0.5-7
 - Merge review fixes, BZ 225898.
 
