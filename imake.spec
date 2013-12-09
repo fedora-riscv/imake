@@ -1,6 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.5
+Release: 9%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
