@@ -1,12 +1,12 @@
 Summary: imake source code configuration and build system
 Name: imake
-Version: 1.0.5
-Release: 9%{?dist}
+Version: 1.0.6
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 
-Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.5.tar.bz2
+Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.6.tar.bz2
 Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.4.tar.bz2
 Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.2.tar.bz2
 Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.4.tar.bz2
@@ -116,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Mon Jan 20 2014 Adam Jackson <ajax@redhat.com> 1.0.6-1
+- imake 1.0.6
+
 * Mon Dec 09 2013 Adam Jackson <ajax@redhat.com> 1.0.5-8
 - Fix imake build with -Werror=format-security (#1037129)
 
