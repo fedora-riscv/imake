@@ -1,0 +1,26 @@
+From 2d586d8c0fe5190a6ab0958ee586e9a8c0a02d72 Mon Sep 17 00:00:00 2001
+From: Riku Voipio <riku.voipio@linaro.org>
+Date: Fri, 06 Dec 2013 23:37:36 +0000
+Subject: add DefaultGcc2AArch64Opt to xorg.cf
+
+Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+---
+diff --git a/xorg.cf b/xorg.cf
+index 81e78df..8ea5715 100644
+--- a/xorg.cf
++++ b/xorg.cf
+@@ -1561,6 +1561,12 @@ XFREE86JAPANESEDOCDIR = $(DOCDIR)/Japanese
+ # endif
+ #endif
+ 
++#if HasGcc2 && defined(AArch64Architecture)
++# ifndef DefaultGcc2AArch64Opt
++#  define DefaultGcc2AArch64Opt -O2 GccAliasingArgs
++# endif
++#endif
++
+ #if HasGcc2 && defined(AMD64Architecture)
+ # ifndef DefaultGcc2AMD64Opt
+ #  define DefaultGcc2AMD64Opt -O2 -fno-strength-reduce GccAliasingArgs
+--
+cgit v0.9.0.2-2-gbebe

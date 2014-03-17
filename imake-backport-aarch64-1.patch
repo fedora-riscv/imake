@@ -1,0 +1,74 @@
+From 0d1be73c26f3636e024637d12c3befd8a9956cfc Mon Sep 17 00:00:00 2001
+From: Riku Voipio <riku.voipio@linaro.org>
+Date: Mon, 22 Apr 2013 11:24:13 +0000
+Subject: Add Aarch64 support
+
+This patch is based on follow patch by Dirk Müller <dirk@dmllr.de> :
+
+https://build.opensuse.org/package/view_file?expand=1&file=aarch64-support.diff&package=xorg-cf-files&project=devel%3AARM%3AAArch64%3A12.3
+
+Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+---
+diff --git a/Imake.cf b/Imake.cf
+index d8a58e2..1ff3c8c 100644
+--- a/Imake.cf
++++ b/Imake.cf
+@@ -1022,6 +1022,10 @@ XCOMM Keep cpp from replacing path elements containing i486/i586/i686
+ #   define AMD64Architecture
+ #  endif
+ # endif
++# if defined(__aarch64__)
++#   define AArch64Architecture
++#   undef __aarch64__
++# endif
+ #endif /* linux || __GLIBC__ */
+ 
+ #if (defined(__Lynx__) || defined(Lynx)) && (defined(i386) || defined(__i386__) || defined(__x86__) || defined(__powerpc__) || defined(__sparc__) || defined(sparc))
+diff --git a/linux.cf b/linux.cf
+index af73c29..316dad3 100644
+--- a/linux.cf
++++ b/linux.cf
+@@ -578,7 +578,7 @@ InstallNamedTargetNoClobber(install,file.ad,$(INSTAPPFLAGS),$(XAPPLOADDIR),class
+ #define MkdirHierCmd		mkdir -p
+ 
+ #ifndef HaveLib64
+-# if defined (AMD64Architecture) || defined (s390xArchitecture) || defined (Ppc64Architecture)
++# if defined (AMD64Architecture) || defined (s390xArchitecture) || defined (Ppc64Architecture) || defined (AArch64Architecture)
+ #  define HaveLib64	YES
+ # else
+ #  define HaveLib64	NO
+@@ -976,6 +976,15 @@ InstallNamedTargetNoClobber(install,file.ad,$(INSTAPPFLAGS),$(XAPPLOADDIR),class
+ # define ServerExtraDefines	-DGCCUSESGAS XFree86ServerDefines -D_XSERVER64
+ #endif /* AMD64Architecture */
+ 
++#ifdef AArch64Architecture
++# ifndef OptimizedCDebugFlags
++#  define OptimizedCDebugFlags DefaultGcc2AArch64Opt
++# endif
++# define LinuxMachineDefines   -D__aarch64__
++# define ServerOSDefines   XFree86ServerOSDefines -DDDXTIME
++# define ServerExtraDefines    -DGCCUSESGAS XFree86ServerDefines -D_XSERVER64
++#endif /* AArch64Architecture */
++
+ #ifndef StandardDefines
+ # ifdef __linux__
+ #  define StandardDefines	-Dlinux LinuxMachineDefines LinuxSourceDefines
+diff --git a/xfree86.cf b/xfree86.cf
+index f7c151c..0f538e0 100644
+--- a/xfree86.cf
++++ b/xfree86.cf
+@@ -2022,6 +2022,12 @@ XFREE86JAPANESEDOCDIR = $(DOCDIR)/Japanese
+ # endif
+ #endif
+ 
++#if HasGcc2 && defined(AArch64Architecture)
++# ifndef DefaultGcc2AArch64Opt
++#  define DefaultGcc2AArch64Opt -O2 GccAliasingArgs
++# endif
++#endif
++
+ #if HasGcc2 && defined(AlphaArchitecture)
+ # ifndef DefaultGcc2AxpOpt
+ #  define DefaultGcc2AxpOpt -O2 GccAliasingArgs
+--
+cgit v0.9.0.2-2-gbebe

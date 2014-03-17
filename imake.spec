@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -14,6 +14,10 @@ Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.3.tar.bz2
 Patch2: xorg-cf-files-1.0.2-redhat.patch
 Patch11: imake-1.0.2-abort.patch
 Patch12: imake-fputs.patch
+
+# upstream backports for AArch64
+Patch20: imake-backport-aarch64-1.patch
+Patch21: imake-backport-aarch64-2.patch
 
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
@@ -39,6 +43,10 @@ migrate software to the GNU autotools system.
 pushd %{name}-%{version}
 %patch11 -p1 -b .abort
 %patch12 -p1 -b .fputs
+popd
+pushd xorg-cf-files-1.0.4
+%patch20 -p1
+%patch21 -p1
 popd
 
 %build
@@ -116,6 +124,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Mon Mar 17 2014 Marcin Juszkiewicz <mjuszkiewicz@redhat.com> - 1.0.6-2
+- Backport AArch64 support
+
 * Mon Jan 20 2014 Adam Jackson <ajax@redhat.com> 1.0.6-1
 - imake 1.0.6
 
