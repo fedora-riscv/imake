@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.6
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -124,6 +124,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.6-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Mon Mar 17 2014 Marcin Juszkiewicz <mjuszkiewicz@redhat.com> - 1.0.6-2
 - Backport AArch64 support
 
