@@ -1,19 +1,18 @@
 Summary: imake source code configuration and build system
 Name: imake
-Version: 1.0.6
+Version: 1.0.7
 Release: 4%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 
-Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.6.tar.bz2
+Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.7.tar.bz2
 Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.4.tar.bz2
-Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.2.tar.bz2
+Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.3.tar.bz2
 Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.4.tar.bz2
 Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.3.tar.bz2
 Patch2: xorg-cf-files-1.0.2-redhat.patch
 Patch11: imake-1.0.2-abort.patch
-Patch12: imake-fputs.patch
 
 # upstream backports for AArch64
 Patch20: imake-backport-aarch64-1.patch
@@ -42,7 +41,6 @@ migrate software to the GNU autotools system.
 # imake patches
 pushd %{name}-%{version}
 %patch11 -p1 -b .abort
-%patch12 -p1 -b .fputs
 popd
 pushd xorg-cf-files-1.0.4
 %patch20 -p1
@@ -124,6 +122,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Wed Oct 01 2014 Adam Jackson <ajax@redhat.com> 1.0.7-4
+- imake 1.0.7
+- gccmakedep 1.0.3
+
 * Sat Aug 16 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.6-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
