@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.7
-Release: 9%{?dist}
+Release: 10%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -122,6 +122,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.7-10
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Wed Aug 02 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.7-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
