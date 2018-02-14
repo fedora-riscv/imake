@@ -84,9 +84,6 @@ rm -rf $RPM_BUILD_ROOT
    done
 }
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,-)
 %doc
