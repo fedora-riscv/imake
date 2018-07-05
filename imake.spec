@@ -1,22 +1,19 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.7
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 
-Source0: ftp://ftp.x.org/pub/individual/util/imake-1.0.7.tar.bz2
-Source1: ftp://ftp.x.org/pub/individual/util/makedepend-1.0.4.tar.bz2
-Source2: ftp://ftp.x.org/pub/individual/util/gccmakedep-1.0.3.tar.bz2
-Source3: ftp://ftp.x.org/pub/individual/util/xorg-cf-files-1.0.4.tar.bz2
-Source4: ftp://ftp.x.org/pub/individual/util/lndir-1.0.3.tar.bz2
+Source0: https://www.x.org/pub/individual/util/imake-1.0.7.tar.bz2
+Source1: https://www.x.org/pub/individual/util/makedepend-1.0.4.tar.bz2
+Source2: https://www.x.org/pub/individual/util/gccmakedep-1.0.3.tar.bz2
+Source3: https://www.x.org/pub/individual/util/xorg-cf-files-1.0.6.tar.bz2
+Source4: https://www.x.org/pub/individual/util/lndir-1.0.3.tar.bz2
+# this has been merged post 1.0.6
 Patch2: xorg-cf-files-1.0.2-redhat.patch
 Patch11: imake-1.0.2-abort.patch
-
-# upstream backports for AArch64
-Patch20: imake-backport-aarch64-1.patch
-Patch21: imake-backport-aarch64-2.patch
 
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
@@ -41,10 +38,6 @@ migrate software to the GNU autotools system.
 # imake patches
 pushd %{name}-%{version}
 %patch11 -p1 -b .abort
-popd
-pushd xorg-cf-files-1.0.4
-%patch20 -p1
-%patch21 -p1
 popd
 
 %build
@@ -72,20 +65,12 @@ rm -rf $RPM_BUILD_ROOT
 {
    for pkg in imake makedepend gccmakedep lndir xorg-cf-files ; do
       pushd $pkg-*
-      case $pkg in
-#         xorg-cf-files)
-#            make install DESTDIR=$RPM_BUILD_ROOT libdir=%%{_datadir}
-#            ;;
-         *)
-            make install DESTDIR=$RPM_BUILD_ROOT
-            ;;
-      esac
+      make install DESTDIR=$RPM_BUILD_ROOT
       popd
    done
 }
 
 %files
-%defattr(-,root,root,-)
 %doc
 %{_bindir}/ccmakedep
 %{_bindir}/cleanlinks
@@ -119,6 +104,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Thu Jul 05 2018 Adam Jackson <ajax@redhat.com> - 1.0.7-11
+- xorg-cf-files 1.0.6
+- Drop pointless %%defattr
+- HTTPS URLs
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.7-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
