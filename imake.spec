@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.7
-Release: 12%{?dist}
+Release: 13%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -18,6 +18,8 @@ Patch11: imake-1.0.2-abort.patch
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
 BuildRequires: xorg-x11-proto-devel
+BuildRequires: gcc
+BuildRequires: gcc-c++
 
 Provides: ccmakedep cleanlinks gccmakedep lndir makedepend makeg
 Provides: mergelib mkdirhier mkhtmlindex revpath xmkmf
@@ -104,6 +106,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Tue Jul 24 2018 Tom Callaway <spot@fedoraproject.org> - 1.0.7-13
+- add BuildRequires: gcc and gcc-c++ to ensure proper build
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.7-12
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
