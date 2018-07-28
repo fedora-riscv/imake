@@ -1,9 +1,8 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.7
-Release: 13%{?dist}
+Release: 14%{?dist}
 License: MIT
-Group: User Interface/X
 URL: http://www.x.org
 
 Source0: https://www.x.org/pub/individual/util/imake-1.0.7.tar.bz2
@@ -20,6 +19,8 @@ BuildRequires: xorg-x11-util-macros
 BuildRequires: xorg-x11-proto-devel
 BuildRequires: gcc
 BuildRequires: gcc-c++
+# imake is not functional without cc
+Requires:      gcc
 
 Provides: ccmakedep cleanlinks gccmakedep lndir makedepend makeg
 Provides: mergelib mkdirhier mkhtmlindex revpath xmkmf
@@ -61,8 +62,6 @@ popd
 }
 
 %install
-rm -rf $RPM_BUILD_ROOT
-
 # Install everything
 {
    for pkg in imake makedepend gccmakedep lndir xorg-cf-files ; do
@@ -73,7 +72,6 @@ rm -rf $RPM_BUILD_ROOT
 }
 
 %files
-%doc
 %{_bindir}/ccmakedep
 %{_bindir}/cleanlinks
 %{_bindir}/gccmakedep
@@ -106,6 +104,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Sat Jul 28 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 1.0.7-14
+- Requires: gcc
+
 * Tue Jul 24 2018 Tom Callaway <spot@fedoraproject.org> - 1.0.7-13
 - add BuildRequires: gcc and gcc-c++ to ensure proper build
 
