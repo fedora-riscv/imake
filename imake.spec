@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.7
-Release: 14%{?dist}
+Release: 15%{?dist}
 License: MIT
 URL: http://www.x.org
 
@@ -104,6 +104,9 @@ popd
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Tue Jul 31 2018 Florian Weimer <fweimer@redhat.com> - 1.0.7-15
+- Rebuild with fixed binutils
+
 * Sat Jul 28 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 1.0.7-14
 - Requires: gcc
 
