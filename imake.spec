@@ -1,12 +1,12 @@
 Summary: imake source code configuration and build system
 Name: imake
-Version: 1.0.7
-Release: 16%{?dist}
+Version: 1.0.8
+Release: 1%{?dist}
 License: MIT
 URL: http://www.x.org
 
-Source0: https://www.x.org/pub/individual/util/imake-1.0.7.tar.bz2
-Source1: https://www.x.org/pub/individual/util/makedepend-1.0.4.tar.bz2
+Source0: https://www.x.org/pub/individual/util/imake-1.0.8.tar.bz2
+Source1: https://www.x.org/pub/individual/util/makedepend-1.0.6.tar.bz2
 Source2: https://www.x.org/pub/individual/util/gccmakedep-1.0.3.tar.bz2
 Source3: https://www.x.org/pub/individual/util/xorg-cf-files-1.0.6.tar.bz2
 Source4: https://www.x.org/pub/individual/util/lndir-1.0.3.tar.bz2
