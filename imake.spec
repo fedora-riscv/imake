@@ -14,6 +14,7 @@ Source4: https://www.x.org/pub/individual/util/lndir-1.0.3.tar.bz2
 Patch2: xorg-cf-files-1.0.2-redhat.patch
 Patch11: imake-1.0.2-abort.patch
 
+BuildRequires: make
 BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
 BuildRequires: xorg-x11-proto-devel
