@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.8
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: MIT
 URL: http://www.x.org
 
@@ -12,6 +12,9 @@ Source3: https://www.x.org/pub/individual/util/xorg-cf-files-1.0.6.tar.bz2
 Source4: https://www.x.org/pub/individual/util/lndir-1.0.3.tar.bz2
 # this has been merged post 1.0.6
 Patch2: xorg-cf-files-1.0.2-redhat.patch
+# Adapt ar invocation to binutils 2.36, bug #1943274, in upstream after 1.0.6,
+# <https://gitlab.freedesktop.org/xorg/util/cf/-/merge_requests/2>
+Patch3: xorg-cf-files-1.0.6-Imake.tmpl-Invoke-ar-cq-with-binutils.patch
 Patch11: imake-1.0.2-abort.patch
 
 BuildRequires: make
@@ -38,6 +41,10 @@ migrate software to the GNU autotools system.
 %prep
 %setup -q -c %{name}-%{version} -a1 -a2 -a3 -a4
 %patch2 -p0 -b .redhat
+
+pushd xorg-cf-files-1.0.6
+%patch3 -p1 -b .ar
+popd
 
 # imake patches
 pushd %{name}-%{version}
@@ -105,6 +112,9 @@ popd
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Mon Mar 29 2021 Petr Pisar <ppisar@redhat.com> - 1.0.8-6
+- Adapt ar invocation to binutils 2.36 (bug #1943274)
+
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.8-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
