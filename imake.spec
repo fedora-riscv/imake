@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.8
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: MIT
 URL: http://www.x.org
 
@@ -112,6 +112,9 @@ popd
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.8-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Mon Mar 29 2021 Petr Pisar <ppisar@redhat.com> - 1.0.8-6
 - Adapt ar invocation to binutils 2.36 (bug #1943274)
 
