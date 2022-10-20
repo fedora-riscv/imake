@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.9
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 URL: http://www.x.org
 
@@ -102,6 +102,9 @@ popd
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Thu Oct 20 2022 Orion Poplawski <orion@nwra.com> - 1.0.9-2
+- Rebuild for koji issue
+
 * Thu Oct 20 2022 Orion Poplawski <orion@nwra.com> - 1.0.9-1
 - Update to 1.0.9
 
