@@ -1,0 +1,61 @@
+--- a/Imake.cf
++++ b/Imake.cf
+@@ -1037,6 +1037,10 @@
+ #   define AArch64Architecture
+ #   undef __aarch64__
+ # endif
++# if defined(__riscv) && (__riscv_xlen == 64)
++#   define RISCV64Architecture
++#   /* undef __riscv */
++# endif
+ #endif /* linux || __GLIBC__ */
+ 
+ #if (defined(__Lynx__) || defined(Lynx)) && (defined(i386) || defined(__i386__) || defined(__x86__) || defined(__powerpc__) || defined(__sparc__) || defined(sparc))
+--- a/linux.cf
++++ b/linux.cf
+@@ -1111,6 +1111,15 @@
+ # define ServerExtraDefines    -DGCCUSESGAS XFree86ServerDefines -D_XSERVER64
+ #endif /* AArch64Architecture */
+ 
++#ifdef RISCV64Architecture
++# ifndef OptimizedCDebugFlags
++#  define OptimizedCDebugFlags DefaultGcc2RISCV64Opt DefaultGcc2OptimizeOpt GccAliasingArgs
++# endif
++# define LinuxMachineDefines   -D__riscv
++# define ServerOSDefines   XFree86ServerOSDefines -DDDXTIME
++# define ServerExtraDefines    -DGCCUSESGAS XFree86ServerDefines -D_XSERVER64
++#endif /* RISCV64Architecture */
++
+ #ifndef StandardDefines
+ # ifdef __linux__
+ #  define StandardDefines	-Dlinux LinuxMachineDefines LinuxSourceDefines
+--- a/xfree86.cf
++++ b/xfree86.cf
+@@ -2067,6 +2067,12 @@
+ # endif
+ #endif
+ 
++#if HasGcc2 && defined(RISCV64Architecture)
++# ifndef DefaultGcc2RISCV64Opt
++#  define DefaultGcc2RISCV64Opt DefaultGcc2OptimizeOpt GccAliasingArgs
++# endif
++#endif
++
+ #if HasGcc2 && defined(AlphaArchitecture)
+ # ifndef DefaultGcc2AxpOpt
+ #  define DefaultGcc2AxpOpt DefaultGcc2OptimizeOpt GccAliasingArgs
+--- a/xorg.cf
++++ b/xorg.cf
+@@ -1584,6 +1584,12 @@
+ # endif
+ #endif
+ 
++#if HasGcc2 && defined(RISCV64Architecture)
++# ifndef DefaultGcc2RISCV64Opt
++#  define DefaultGcc2RISCV64Opt DefaultGcc2OptimizeOpt GccAliasingArgs
++# endif
++#endif
++
+ #if HasGcc2 && defined(AMD64Architecture)
+ # ifndef DefaultGcc2AMD64Opt
+ #  define DefaultGcc2AMD64Opt DefaultGcc2OptimizeOpt GccAliasingArgs
