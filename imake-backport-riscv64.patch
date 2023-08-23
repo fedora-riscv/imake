@@ -1,0 +1,67 @@
+--- xorg-cf-files-1.0.7/Imake.cf	2021-08-02 09:00:38.000000000 +0800
++++ xorg-cf-files-1.0.7/Imake.cf	2023-08-23 14:53:28.502454248 +0800
+@@ -1037,6 +1037,10 @@
+ #   define AArch64Architecture
+ #   undef __aarch64__
+ # endif
++# if defined(__riscv) && (__riscv_xlen == 64)
++#   define RISCV64Architecture
++#   /* undef __riscv */
++# endif
+ #endif /* linux || __GLIBC__ */
+ 
+ #if (defined(__Lynx__) || defined(Lynx)) && (defined(i386) || defined(__i386__) || defined(__x86__) || defined(__powerpc__) || defined(__sparc__) || defined(sparc))
+diff '--color=auto' -u xorg-cf-files-1.0.7/linux.cf xorg-cf-files-1.0.7/linux.cf
+--- xorg-cf-files-1.0.7/linux.cf	2021-08-02 09:00:38.000000000 +0800
++++ xorg-cf-files-1.0.7/linux.cf	2023-08-23 14:53:28.503454267 +0800
+@@ -1000,6 +1000,15 @@
+ # define ServerExtraDefines    -DGCCUSESGAS XFree86ServerDefines -D_XSERVER64
+ #endif /* AArch64Architecture */
+ 
++#ifdef RISCV64Architecture
++# ifndef OptimizedCDebugFlags
++#  define OptimizedCDebugFlags DefaultGcc2RISCV64Opt -O2 GccAliasingArgs
++# endif
++# define LinuxMachineDefines   -D__riscv
++# define ServerOSDefines   XFree86ServerOSDefines -DDDXTIME
++# define ServerExtraDefines    -DGCCUSESGAS XFree86ServerDefines -D_XSERVER64
++#endif /* RISCV64Architecture */
++
+ #ifndef StandardDefines
+ # ifdef __linux__
+ #  define StandardDefines	-Dlinux LinuxMachineDefines LinuxSourceDefines
+Only in xorg-cf-files-1.0.7/: linux.cf.orig
+diff '--color=auto' -u xorg-cf-files-1.0.7/xfree86.cf xorg-cf-files-1.0.7/xfree86.cf
+--- xorg-cf-files-1.0.7/xfree86.cf	2021-08-02 09:00:39.000000000 +0800
++++ xorg-cf-files-1.0.7/xfree86.cf	2023-08-23 14:53:28.503454267 +0800
+@@ -2028,6 +2028,12 @@
+ # endif
+ #endif
+ 
++#if HasGcc2 && defined(RISCV64Architecture)
++# ifndef DefaultGcc2RISCV64Opt
++#  define DefaultGcc2RISCV64Opt -O2 GccAliasingArgs
++# endif
++#endif
++
+ #if HasGcc2 && defined(AlphaArchitecture)
+ # ifndef DefaultGcc2AxpOpt
+ #  define DefaultGcc2AxpOpt -O2 GccAliasingArgs
+Only in xorg-cf-files-1.0.7/: xfree86.cf.orig
+diff '--color=auto' -u xorg-cf-files-1.0.7/xorg.cf xorg-cf-files-1.0.7/xorg.cf
+--- xorg-cf-files-1.0.7/xorg.cf	2021-08-02 09:00:39.000000000 +0800
++++ xorg-cf-files-1.0.7/xorg.cf	2023-08-23 14:53:28.505454304 +0800
+@@ -1567,6 +1567,12 @@
+ # endif
+ #endif
+ 
++#if HasGcc2 && defined(RISCV64Architecture)
++# ifndef DefaultGcc2RISCV64Opt
++#  define DefaultGcc2RISCV64Opt -O2 GccAliasingArgs
++# endif
++#endif
++
+ #if HasGcc2 && defined(AMD64Architecture)
+ # ifndef DefaultGcc2AMD64Opt
+ #  define DefaultGcc2AMD64Opt -O2 -fno-strength-reduce GccAliasingArgs
+Only in xorg-cf-files-1.0.7/: xorg.cf.orig

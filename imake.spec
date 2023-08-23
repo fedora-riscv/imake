@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.9
-Release: 3%{?dist}
+Release: 3.rv64%{?dist}
 License: MIT
 URL: http://www.x.org
 
@@ -10,6 +10,10 @@ Source1: https://www.x.org/pub/individual/util/makedepend-1.0.6.tar.bz2
 Source2: https://www.x.org/pub/individual/util/gccmakedep-1.0.3.tar.bz2
 Source3: https://www.x.org/pub/individual/util/xorg-cf-files-1.0.7.tar.bz2
 Source4: https://www.x.org/pub/individual/util/lndir-1.0.3.tar.bz2
+
+# riscv64 patch from debian https://lists.debian.org/debian-riscv/2018/05/msg00004.html
+Patch1: imake-backport-riscv64.patch
+
 Patch11: imake-1.0.2-abort.patch
 
 BuildRequires: make
@@ -35,6 +39,11 @@ migrate software to the GNU autotools system.
 
 %prep
 %setup -q -c %{name}-%{version} -a1 -a2 -a3 -a4
+
+# xorg-cf patches
+pushd xorg-cf-files-1.0.7
+%patch1 -p1 -b .riscv64
+popd
 
 # imake patches
 pushd %{name}-%{version}
@@ -102,6 +111,9 @@ popd
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Wed Aug 23 2023 Songsong Zhang <U2FsdGVkX1@gmail.com> - 1.0.9-3.rv64
+- Add riscv64 support
+
 * Thu Jan 19 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.9-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_38_Mass_Rebuild
 
