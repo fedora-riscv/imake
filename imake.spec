@@ -1,7 +1,7 @@
 Summary: imake source code configuration and build system
 Name: imake
 Version: 1.0.9
-Release: 3.rv64%{?dist}
+Release: 4.rv64%{?dist}
 License: MIT
 URL: http://www.x.org
 
@@ -111,6 +111,9 @@ popd
 %{_mandir}/man1/xmkmf.1*
 
 %changelog
+* Thu Jul 20 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.9-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
+
 * Wed Aug 23 2023 Songsong Zhang <U2FsdGVkX1@gmail.com> - 1.0.9-3.rv64
 - Add riscv64 support
 
